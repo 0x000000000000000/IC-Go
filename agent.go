@@ -21,7 +21,6 @@ type Agent struct {
 func NewFromPem(anonymous bool, pemPath string, host string) (*Agent, error) {
 	var id *identity.Identity
 	c := NewClient(host)
-	//todo:是否需要从ic拉取rootKey信息
 	status, _ := c.Status()
 
 	if anonymous == true {
