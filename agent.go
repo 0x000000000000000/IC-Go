@@ -18,9 +18,9 @@ type Agent struct {
 	rootKey       []byte //ICP root identity
 }
 
-func NewFromPem(anonymous bool, pemPath string) (*Agent, error) {
+func NewFromPem(anonymous bool, pemPath string, host string) (*Agent, error) {
 	var id *identity.Identity
-	c := NewClient("https://ic0.app")
+	c := NewClient(host)
 	//todo:是否需要从ic拉取rootKey信息
 	status, _ := c.Status()
 
@@ -49,8 +49,8 @@ func NewFromPem(anonymous bool, pemPath string) (*Agent, error) {
 	}, nil
 }
 
-func New(anonymous bool, privKey string) *Agent {
-	c := NewClient("https://ic0.app")
+func New(anonymous bool, privKey string, host string) *Agent {
+	c := NewClient(host)
 	//todo:是否需要从ic拉取rootKey信息
 	status, _ := c.Status()
 	pbBytes, _ := hex.DecodeString(privKey)
